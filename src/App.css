@@ -27,6 +27,12 @@
   color: white;
 }
 
+.App-body{
+  display: flex;
+  flex-direction: row;
+  max-width: 50vh;
+}
+
 .menu_item{
   background-color: #1E90FF;
   min-height: 15vh;
