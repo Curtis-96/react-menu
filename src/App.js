@@ -20,18 +20,18 @@ const App = () => {
       <header className="App-header">
         <h1>Tomfoolery.io</h1>
       </header>
-    <div className='select'>
-      <button>Button 1</button>
-      <button>Button 2</button>
-    </div>
-        <Router>
-          <Routes>
-            <Route path="/" exact component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-          </Routes>
-        </Router>
+      <div className='select'>
+        <button>Button 1</button>
+        <button>Button 2</button>
       </div>
+      <Router>
+        <Routes>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 
