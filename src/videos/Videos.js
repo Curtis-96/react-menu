@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import { ReactDOM, React, useState, useEffect } from 'react';
 import axios from "axios";
 import Icon from '@mdi/react';
 import { MdFace, mdiAccount } from '@mdi/react';
-import './App.css';
+import './Videos.css';
 
 const Videos = (props) => {
 
@@ -53,6 +52,9 @@ const avatarId = 'Binx Bond';
 
 console.log(videosList);
 
+const API_KEY = "AIzaSyAojYUAOXXsTMnyA_wQSEHsflwa-oVLcIU";
+const BASE_URL = "https://www.youtube.com/watch?v=";
+
 return (
     <div className="App App-header">
         <header className="App-header">
@@ -91,3 +93,5 @@ return (
     </div>
 );
 }
+
+export default Videos;
