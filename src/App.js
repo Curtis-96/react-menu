@@ -6,6 +6,7 @@ import { MdFace, mdiAccount } from '@mdi/react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Videos from './videos/Videos';
 import './App.css';
+import UserDashboard from './users/UserDashboard';
 
 const API_KEY = "AIzaSyAojYUAOXXsTMnyA_wQSEHsflwa-oVLcIU";
 const BASE_URL = "https://www.youtube.com/watch?v=";
@@ -16,8 +17,8 @@ const userName = 'curt';
 const App = (props) => {
   let gate = useNavigate();
 
-  const Navigate = () => {
-    gate('/videos');
+  const Navigate = (path) => {
+    gate(path);
   }
 
   // const newLocal = <Link to="/videos">Contact</Link>;
@@ -27,11 +28,11 @@ const App = (props) => {
         <h1>Tomfoolery.io</h1>
       </header>
       <div className='select'>
-        <button onClick={Navigate}>Button 1</button>
-        <button>Button 2</button>
+        <button onClick={Navigate('/videos')}>Button 1</button>
+        <button onClick={Navigate('/users')}>Button 2</button>
       </div>
         <Routes>
-          <Route path="/" exact component={Home} />
+          <Route path="/users" component={UserDashboard} />
           <Route path="/videos" component={Videos} />
         </Routes>
     </div>
