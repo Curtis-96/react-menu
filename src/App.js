@@ -3,7 +3,7 @@ import { ReactDOM, React, useState, useEffect } from 'react';
 import axios from "axios";
 import Icon from '@mdi/react';
 import { MdFace, mdiAccount } from '@mdi/react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter } from 'react-router-dom';
 import Videos from './videos/Videos';
 import './App.css';
 import UserDashboard from './users/UserDashboard';
@@ -18,21 +18,24 @@ const App = (props) => {
   let gate = useNavigate();
 
   const Navigate = (path) => {
+    console.log('prop', path);
     gate(path);
   }
 
-  // const newLocal = <Link to="/videos">Contact</Link>;
   return (
     <div className="App App-header">
       <header className="App-header">
-        <h1>Tomfoolery.io</h1>
+        <Link to="/" className='App-header-logo'>
+          <h1>Tomfoolery.io</h1>
+        </Link>
       </header>
       <div className='select'>
-        <button onClick={Navigate('/videos')}>Button 1</button>
-        <button onClick={Navigate('/users')}>Button 2</button>
+        <button onClick={() => Navigate('/videos')}>Button 1</button>
+        <button onClick={() => Navigate('/users')}>Button 2</button>
       </div>
         <Routes>
-          <Route path="/users" component={UserDashboard} />
+          <Route path='/' component={App} />
+          <Route exact path='/users' component={UserDashboard} />
           <Route path="/videos" component={Videos} />
         </Routes>
     </div>

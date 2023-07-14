@@ -4,11 +4,15 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import UserDashboard from './users/UserDashboard';
+import Videos from './videos/Videos';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
     <App />
+    <UserDashboard />
+    <Videos />
   </Router>
 );
 
