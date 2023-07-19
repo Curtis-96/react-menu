@@ -18,26 +18,27 @@ const Videos = (props) => {
         setFilteredList(newList);
     }
 
-    const fetchVideos = async () => {
-        const result = await axios.get("https://www.googleapis.com/youtube/v3/search", {
-            params: {
-                part: "snippet",
-                maxResults: 5,
-                key: API_KEY,
-                q: 'music',
-            },
-        
-    })};
-
     const handleInputChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
     useEffect(() => {
-        const videoFeed = fetchVideos().then(data => data);
+        const fetchVideos = async () => {
+            const result = await axios.get("https://www.googleapis.com/youtube/v3/search", {
+                params: {
+                    part: "snippet",
+                    maxResults: 5,
+                    key: API_KEY,
+                    q: 'music',
+                },
+            });
+            return result;
+        };
+
+        const videoFeed = fetchVideos().then(data => data.data.items);
         console.log('filteredlist', videoFeed);
-        // setVideosList(videoFeed);
-        // setFilteredList(videoFeed);
+        setVideosList(videoFeed);
+        setFilteredList(videoFeed);
     }, []);
 
     const avatarId = 'Binx Bond';
@@ -46,7 +47,6 @@ const Videos = (props) => {
     const BASE_URL = "https://www.youtube.com/watch?v=";
 
     return (
-        
         <div className="App App-header">
             <header className="App-header">
             <h1>Videos: </h1>
