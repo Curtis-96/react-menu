@@ -3,10 +3,10 @@ import { ReactDOM, React, useState, useEffect } from 'react';
 import axios from "axios";
 import Icon from '@mdi/react';
 import { MdFace, mdiAccount } from '@mdi/react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter } from 'react-router-dom';
-import Videos from './videos/Videos';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter, NavLink, Switch } from 'react-router-dom';
 import './App.css';
 import UserDashboard from './users/UserDashboard';
+import Videos from './videos/Videos';
 
 const API_KEY = "AIzaSyAojYUAOXXsTMnyA_wQSEHsflwa-oVLcIU";
 const BASE_URL = "https://www.youtube.com/watch?v=";
@@ -15,12 +15,14 @@ const userName = 'curt';
 
 
 const App = (props) => {
-  let gate = useNavigate();
 
-  const Navigate = (path) => {
-    console.log('prop', path);
-    gate(path);
-  }
+  const Home = () => {
+    return(
+      <div>
+        Hello
+      </div>
+    );
+  };
 
   return (
     <div className="App App-header">
@@ -30,13 +32,13 @@ const App = (props) => {
         </Link>
       </header>
       <div className='select'>
-        <button onClick={() => Navigate('/videos')}>Button 1</button>
-        <button onClick={() => Navigate('/users')}>Button 2</button>
+        <Link to='/videos'><p>Button 1</p></Link>
+        <Link to='/users'><p>Button 1</p></Link>
       </div>
         <Routes>
-          <Route path='/' component={App} />
-          <Route exact path='/users' component={UserDashboard} />
-          <Route path="/videos" component={Videos} />
+          <Route path='/' element={<Home />} />
+          <Route path='/users' element={<UserDashboard />} />
+          <Route path='/videos' element={<Videos />} />
         </Routes>
     </div>
   );
