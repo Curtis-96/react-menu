@@ -14,32 +14,43 @@ const BASE_URL = "https://www.youtube.com/watch?v=";
 const userName = 'curt';
 
 
-const App = (props) => {
+const App = () => {
 
   const Home = () => {
     return(
       <div>
-        Hello
-      </div>
-    );
-  };
-
-  return (
-    <div className="App App-header">
       <header className="App-header">
         <Link to="/" className='App-header-logo'>
           <h1>Tomfoolery.io</h1>
         </Link>
       </header>
       <div className='select'>
-        <Link to='/videos'><p>Button 1</p></Link>
-        <Link to='/users'><p>Button 1</p></Link>
       </div>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/users' element={<UserDashboard />} />
-          <Route path='/videos' element={<Videos />} />
-        </Routes>
+      </div>
+    );
+  };
+
+  const Sidebar = () => {
+    return (
+      <div className="sidebar">
+        <Link to='/videos' className="sidebar-link">
+          <p>Videos</p>
+        </Link>
+        <Link to='/users' className="sidebar-link">
+          <p>Users</p>
+        </Link>
+      </div>
+    );
+  };
+
+  return (
+    <div className="App App-header">
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/users' element={<UserDashboard />} />
+        <Route path='/videos' element={<Videos />} />
+      </Routes>
+      <Sidebar />
     </div>
   );
 };

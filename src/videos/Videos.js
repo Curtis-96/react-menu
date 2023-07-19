@@ -1,5 +1,6 @@
 import { ReactDOM, React, useState, useEffect } from 'react';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { MdFace, mdiAccount } from '@mdi/react';
 import './Videos.css';
@@ -51,7 +52,6 @@ const Videos = (props) => {
             <header className="App-header">
             <h1>Videos: </h1>
             </header>
-            <div className='App-body'>
                 {/* <Icon path={MdFace}
                 size={4}
                 horizontal
@@ -66,6 +66,9 @@ const Videos = (props) => {
                 />
                 <button onClick={onSearch}>search</button>
             </div>
+            <Link to={'/'}>
+                <button>Back button</button>
+            </Link>
             {/* <Icon path={mdiAccount}
             size={1}
             horizontal
@@ -81,7 +84,6 @@ const Videos = (props) => {
                 )
             } */}
             </div>
-        </div>
     );
 }
 
