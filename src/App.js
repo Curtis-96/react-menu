@@ -20,6 +20,7 @@ const App = () => {
     return(
       <div>
       <header className="App-header">
+        
         <Link to="/" className='App-header-logo'>
           <h1>Tomfoolery.io</h1>
         </Link>
