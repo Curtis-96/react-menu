@@ -8,7 +8,7 @@ import robot from '../robot.svg';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter } from 'react-router-dom';
 import './UserDashboard.css';
 
-const API_KEY = "AIzaSyAojYUAOXXsTMnyA_wQSEHsflwa-oVLcIU";
+const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = "https://www.youtube.com/watch?v=";
 
 const userName = 'curt';

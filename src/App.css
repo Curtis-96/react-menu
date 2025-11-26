@@ -1,6 +1,6 @@
 .App {
+  background-color: #F08705;
   text-align: center;
-  background-color: #282c34;
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -8,7 +8,6 @@
 }
 
 @import "leaflet/dist/leaflet.css";
-
 
 .App-logo {
   height: 40vmin;
@@ -27,6 +26,7 @@
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-color: #F08705;
 }
 
 .App-body{
@@ -64,7 +64,7 @@
 
 /* Sidebar.css */
 .sidebar {
-  background-color: #282c34;
+  background-color: transparent;
   flex-direction: column;
   display: inline-flex;
   width: 200px;
@@ -82,7 +82,7 @@
 }
 
 .sidebar-link:hover {
-  background-color: #ddd; /* Change the background color when hovering over the links */
+  background-color: rgba(0,0,0,0.08); /* subtle overlay on hover to keep contrast on bright background */
 }
 
 @keyframes App-logo-spin {

@@ -2,7 +2,7 @@ import axios from "axios";
 import { ReactDOM, React, useState, useEffect } from 'react';
 
 
-    const API_KEY = "AIzaSyAojYUAOXXsTMnyA_wQSEHsflwa-oVLcIU";
+    const API_KEY = process.env.REACT_APP_API_KEY;
     const BASE_URL = "https://www.youtube.com/watch?v=";
 
      const fetchAvatar = async() => {
