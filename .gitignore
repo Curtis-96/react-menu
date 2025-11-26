@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Add package files and node_modules to ignore (if you want these tracked by Git remove these lines)
+/package.json
+/package-lock.json
+/node_modules

@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   background-color: #282c34;
-  /* height: 100%; */
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -30,6 +29,11 @@
   color: white;
 }
 
+.App-body{
+  flex-direction: row;
+  max-width: 50vh;
+}
+
 .menu_item{
   background-color: #ffffff;
   color: #111827;
@@ -46,6 +50,39 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.App-header-logo{
+  text-decoration: none;
+  color: white;
+}
+
+.select{
+  left: 0;
+  top: 50%;
+}
+
+/* Sidebar.css */
+.sidebar {
+  background-color: #282c34;
+  flex-direction: column;
+  display: inline-flex;
+  width: 200px;
+  float: left;
+  left: 0;
+  justify-content: end;
+  align-self: flex-start;
+}
+
+.sidebar-link {
+  display: block; /* Make the links full width of the sidebar */
+  padding: 10px 0; /* Add some vertical padding to space out the links */
+  text-decoration: none; /* Remove the underline from links */
+  color: white; /* Set the color of the link text */
+}
+
+.sidebar-link:hover {
+  background-color: #ddd; /* Change the background color when hovering over the links */
 }
 
 @keyframes App-logo-spin {
