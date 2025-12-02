@@ -1,19 +1,16 @@
-import logo from './logo.svg';
+import burger from './burger.svg';
 import { ReactDOM, React, useState, useEffect } from 'react';
 import axios from "axios";
 import Icon from '@mdi/react';
 import { MdFace, mdiAccount } from '@mdi/react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter, NavLink, Switch } from 'react-router-dom';
 import './App.css';
-import Map from './Map';
+import Map from './map/Map';
 import UserDashboard from './users/UserDashboard';
 import Videos from './videos/Videos';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = "https://www.youtube.com/watch?v=";
-
-const userName = 'curt';
-
 
 const App = () => {
 
@@ -32,8 +29,8 @@ const App = () => {
   const Sidebar = () => {
     return (
       <div className="sidebar">
-        <Link to='/videos' className="sidebar-link">
-          <p>Videos</p>
+        <Link to='/map' className="sidebar-link">
+          <p>Map</p>
         </Link>
         <Link to='/users' className="sidebar-link">
           <p>Users</p>
@@ -46,6 +43,7 @@ const App = () => {
     <div className="App App-header">
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/map' element={<Map />} />
         <Route path='/users' element={<UserDashboard />} />
         <Route path='/videos' element={<Videos />} />
       </Routes>
