@@ -8,6 +8,8 @@ import './App.css';
 import Map from './map/Map';
 import UserDashboard from './users/UserDashboard';
 import Videos from './videos/Videos';
+import AppHeader from './AppHeader';
+import MapContainer from './map/MapContainer';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = "https://www.youtube.com/watch?v=";
@@ -17,11 +19,6 @@ const App = () => {
   const Home = () => {
     return(
       <div className='app-container'>
-      <header className="App-header">
-        <Link to="/" className='App-header-logo'>
-          <h1>Restaurateur.io</h1>
-        </Link>
-      </header>
       </div>
     );
   };
@@ -41,13 +38,14 @@ const App = () => {
 
   return (
     <div className="App App-header">
+      <AppHeader title="Restaurateur.io" />
+      <Sidebar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/map' element={<Map />} />
+        <Route path='/map' element={<MapContainer />} />
         <Route path='/users' element={<UserDashboard />} />
         <Route path='/videos' element={<Videos />} />
       </Routes>
-      <Sidebar />
     </div>
   );
 };

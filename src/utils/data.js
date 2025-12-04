@@ -1,16 +1,30 @@
 import axios from "axios";
 import { ReactDOM, React, useState, useEffect } from 'react';
 
-
-    const API_KEY = process.env.REACT_APP_API_KEY;
     const BASE_URL = "https://www.youtube.com/watch?v=";
+    const API_KEY = process.env.REACT_APP_API_KEY;
 
-     const fetchAvatar = async() => {
+    const fetchUsers = async() => {
+       const users = await fetch('https://randomuser.me/api/?results=5')
+        .then(response => response.json())
+        .then(data => {
+        console.log(data.results);  // array of user objects
+        })
+        .catch(error => {
+        console.error('Error fetching users:', error);
+        });
+
+        return users;
+    }
+
+    const fetchAvatar = async() => {
         let avatarId = 'Binx Bond.png'
         fetch('https://api.multiavatar.com/'
         +JSON.stringify(avatarId))
         .then(res => res.text())
         .then(svg => console.log(svg));
+
+        return avatarId;
     };
 
      const fetchVideos = async() => {
@@ -31,4 +45,4 @@ import { ReactDOM, React, useState, useEffect } from 'react';
         return newList;
     };
 
-export default {search, fetchVideos, fetchAvatar, API_KEY, BASE_URL};
+export { search, fetchVideos, fetchAvatar, fetchUsers, API_KEY, BASE_URL };

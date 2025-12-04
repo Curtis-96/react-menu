@@ -3,7 +3,7 @@ import axios from "axios";
 import Icon from '@mdi/react';
 import { MdFace, mdiAccount } from '@mdi/react';
 import { ReactSVG } from "react-svg";
-import {fetchAvatar} from '../utils/data';
+import { fetchUsers } from '../utils/data';
 import robot from '../robot.svg';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter } from 'react-router-dom';
 import './UserDashboard.css';
@@ -12,19 +12,24 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const UserDashboard = (props) => {
   const [userName, setUserName] = useState('');
+  const [usersList, setUsersList] = useState([]);
   const [avatar, setAvatar] = useState();
 
   useEffect(() => {
-    const fetchAvatar = async() => {
-      let avatarId = 'Binx Bond.png'
-        fetch('https://api.multiavatar.com/'
-        +JSON.stringify(avatarId))
-        .then(res => res.text())
-        .then(svg => console.log(svg));
-    };
+    // const fetchAvatar = async() => {
+    //   let avatarId = 'Binx Bond.png'
+    //     fetch('https://api.multiavatar.com/'
+    //     +JSON.stringify(avatarId))
+    //     .then(res => res.text())
+    //     .then(svg => console.log(svg));
+    // };
 
-    const avatarSVG = fetchAvatar();
-    setAvatar(avatarSVG);
+      const users = fetchUsers();
+      
+      setUsersList(users);
+
+    // const avatarSVG = fetchAvatar();
+    // setAvatar(avatarSVG);
 
   }, []);
 
