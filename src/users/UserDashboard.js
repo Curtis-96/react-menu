@@ -1,11 +1,7 @@
-import { ReactDOM, React, useState, useEffect } from 'react';
-import axios from "axios";
-import Icon from '@mdi/react';
-import { MdFace, mdiAccount } from '@mdi/react';
-import { ReactSVG } from "react-svg";
+import React, { useState, useEffect } from 'react';
 import { fetchUsers } from '../utils/data';
 import robot from '../robot.svg';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './UserDashboard.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -14,37 +10,64 @@ const UserDashboard = (props) => {
   const [userName, setUserName] = useState('');
   const [usersList, setUsersList] = useState([]);
   const [avatar, setAvatar] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // const fetchAvatar = async() => {
-    //   let avatarId = 'Binx Bond.png'
-    //     fetch('https://api.multiavatar.com/'
-    //     +JSON.stringify(avatarId))
-    //     .then(res => res.text())
-    //     .then(svg => console.log(svg));
-    // };
+    let mounted = true;
 
-      const users = fetchUsers();
-      
-      setUsersList(users);
+    const loadUsers = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const users = await fetchUsers();
+        if (mounted) setUsersList(users || []);
+      } catch (err) {
+        console.error('Failed to load users', err);
+        if (mounted) setError('Failed to load users');
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
 
-    // const avatarSVG = fetchAvatar();
-    // setAvatar(avatarSVG);
+    loadUsers();
 
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  // const newLocal = <Link to="/videos">Contact</Link>;
   return (
-    <div>
-      <h1>Welcome world</h1>
-      <Link to={'/'}>
-        <button>Back button</button>
-      </Link>
-      <div>
-      {robot && (
-        <ReactSVG src={robot}/>
-      )}
+    <div className="users-page">
+      <div className="users-header">
+        <h1>Users</h1>
       </div>
+
+      {robot && (
+        <div className="robot-wrap">
+          <img src={robot} alt="robot" className="robot-img" />
+        </div>
+      )}
+
+      {loading && <div className="loading">Loading users…</div>}
+
+      {error && <div className="error">{error}</div>}
+
+      {!loading && !error && (
+        <div className="users-grid">
+          {usersList.length === 0 && <div className="empty">No users found.</div>}
+          {usersList.map((u, idx) => (
+            <div className="user-card" key={u.login?.uuid || idx}>
+              <img className="avatar" src={u.picture?.large || u.picture?.thumbnail} alt={`${u.name?.first} ${u.name?.last}`} />
+              <div className="user-info">
+                <div className="user-name">{u.name?.first} {u.name?.last}</div>
+                <div className="user-email">{u.email}</div>
+                <div className="user-location">{u.location?.city}, {u.location?.country}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

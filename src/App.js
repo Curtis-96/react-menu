@@ -12,7 +12,6 @@ import AppHeader from './AppHeader';
 import MapContainer from './map/MapContainer';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const BASE_URL = "https://www.youtube.com/watch?v=";
 
 const App = () => {
 

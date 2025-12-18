@@ -41,17 +41,45 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
+
+/* UserDashboard specific styles */
+.users-page{
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.users-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+.back-button{ padding: .4rem .8rem; border-radius:6px; }
+.robot-wrap{ margin: 1rem 0; }
+.robot-img{ width:64px; opacity:.9 }
+.loading, .error, .empty{ text-align:center; margin:1rem 0; }
+.error{ color: #b00020 }
+.users-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+  gap:1rem;
+}
+.user-card{
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  display:flex;
+  gap:0.8rem;
+  align-items:center;
+}
+.avatar{ width:56px; height:56px; border-radius:50%; object-fit:cover }
+.user-info{ text-align:left }
+.user-name{ font-weight:600 }
+.user-email{ font-size:0.9rem; color:#555 }
+.user-location{ font-size:0.85rem; color:#777 }
   
   .App-link {
     color: #61dafb;
   }
-  
-  /* @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  } */
-  
