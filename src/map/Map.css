@@ -1,0 +1,16 @@
+/* Styles for the map container and map itself */
+.map-container{
+	padding: 1rem;
+	margin: 0 auto;
+    width: 80%;
+}
+
+/* Ensure the leaflet map has a sensible default height */
+.leaflet-container{
+	height: 60vh;
+	width: 100%;
+}
+
+.map-container h3{
+	margin-bottom: 0.5rem;
+}

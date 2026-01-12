@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUsers } from '../utils/data';
+import { fetchUsers, search } from '../utils/data';
 import robot from '../robot.svg';
 import { Link } from 'react-router-dom';
 import './UserDashboard.css';
@@ -52,6 +52,23 @@ const UserDashboard = (props) => {
       {loading && <div className="loading">Loading users…</div>}
 
       {error && <div className="error">{error}</div>}
+
+      {!loading && !error && (
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search users by name"
+            value={userName}
+            onChange={(e) => {
+              const term = e.target.value;
+              setUserName(term);
+              search(term, usersList).then((filtered) => {
+                setUsersList(filtered);
+              });
+            }}
+          />
+        </div>
+      )}
 
       {!loading && !error && (
         <div className="users-grid">
