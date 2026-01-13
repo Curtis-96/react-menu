@@ -38,20 +38,34 @@ import { ReactDOM, React, useState, useEffect } from 'react';
         return result;
     };
     
-     const search = async(searchTerm, list) => {
-        const newList = searchTerm.length > 0 && list.filter(elem => (elem.snippet.title).includes(searchTerm));
-        
+    const searchUsers = (searchTerm, list) => {
+        const allUsers = list;
+
+        if (!searchTerm || searchTerm.trim() === '') {
+            return list;
+        }
+
+        const normalized = searchTerm.toLowerCase();
+
+        const newList = searchTerm.length > 0 &&
+            list.filter(
+                (elem) =>
+                elem.name.first.toLowerCase().includes(normalized) ||
+                elem.name.last.toLowerCase().includes(normalized) ||
+                elem.email.toLowerCase().includes(normalized)
+            );    
+
         return newList;
     };
 
     const getUserLocation = () => {
     return new Promise((resolve) => {
         if (!navigator.geolocation) {
-        resolve({
-            position: null,
-            error: "Geolocation is not supported by your browser",
-        });
-        return;
+            resolve({
+                position: null,
+                error: "Geolocation is not supported by your browser",
+            });
+            return;
         }
 
     navigator.geolocation.getCurrentPosition(
@@ -73,4 +87,4 @@ import { ReactDOM, React, useState, useEffect } from 'react';
 };
 
 
-export { search, fetchVideos, fetchAvatar, fetchUsers, getUserLocation, API_KEY, BASE_URL };
+export { searchUsers, fetchVideos, fetchAvatar, fetchUsers, getUserLocation, API_KEY, BASE_URL };

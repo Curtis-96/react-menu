@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUsers, search } from '../utils/data';
+import { fetchUsers, searchUsers } from '../utils/data';
 import robot from '../robot.svg';
 import { Link } from 'react-router-dom';
 import './UserDashboard.css';
@@ -8,34 +8,39 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const UserDashboard = (props) => {
   const [userName, setUserName] = useState('');
+  const [allUsers, setAllUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
   const [avatar, setAvatar] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let mounted = true;
+  let mounted = true;
 
-    const loadUsers = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const users = await fetchUsers();
-        if (mounted) setUsersList(users || []);
-      } catch (err) {
-        console.error('Failed to load users', err);
-        if (mounted) setError('Failed to load users');
-      } finally {
-        if (mounted) setLoading(false);
+  const loadUsers = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const users = await fetchUsers();
+      if (mounted) {
+        setAllUsers(users || []);
+        setUsersList(users || []);
       }
-    };
+    } catch (err) {
+      if (mounted) setError('Failed to load users');
+    } finally {
+      if (mounted) setLoading(false);
+    }
+  };
 
-    loadUsers();
+  loadUsers();
 
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  return () => {
+    mounted = false;
+  };
+}, []);
+
 
   return (
     <div className="users-page">
@@ -62,15 +67,15 @@ const UserDashboard = (props) => {
             onChange={(e) => {
               const term = e.target.value;
               setUserName(term);
-              search(term, usersList).then((filtered) => {
-                setUsersList(filtered);
-              });
+
+              const filtered = searchUsers(term, allUsers);
+              setUsersList(filtered);
             }}
           />
         </div>
       )}
 
-      {!loading && !error && (
+      {!loading && !error && usersList &&(
         <div className="users-grid">
           {usersList.length === 0 && <div className="empty">No users found.</div>}
           {usersList.map((u, idx) => (
