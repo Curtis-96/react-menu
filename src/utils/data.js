@@ -4,17 +4,17 @@ import { ReactDOM, React, useState, useEffect } from 'react';
     const BASE_URL = "https://www.youtube.com/watch?v=";
     const API_KEY = process.env.REACT_APP_API_KEY;
 
-        const fetchUsers = async() => {
-             try {
-                 const response = await fetch('https://randomuser.me/api/?results=5');
-                 const data = await response.json();
-                 // return the array of user objects
-                 return data.results || [];
-             } catch (error) {
-                 console.error('Error fetching users:', error);
-                 return [];
-             }
-        };
+    const fetchUsers = async() => {
+        try {
+            const response = await fetch('https://randomuser.me/api/?results=5');
+            const data = await response.json();
+            // return the array of user objects
+            return data.results || [];
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            return [];
+        }
+    };
 
     const fetchAvatar = async() => {
         let avatarId = 'Binx Bond.png'
@@ -44,4 +44,33 @@ import { ReactDOM, React, useState, useEffect } from 'react';
         return newList;
     };
 
-export { search, fetchVideos, fetchAvatar, fetchUsers, API_KEY, BASE_URL };
+    const getUserLocation = () => {
+    return new Promise((resolve) => {
+        if (!navigator.geolocation) {
+        resolve({
+            position: null,
+            error: "Geolocation is not supported by your browser",
+        });
+        return;
+        }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        resolve({
+          position: [pos.coords.latitude, pos.coords.longitude],
+          error: null,
+        });
+      },
+      (err) => {
+        resolve({
+          position: null,
+          error: "Location permission denied",
+        });
+      },
+      { enableHighAccuracy: true }
+    );
+  });
+};
+
+
+export { search, fetchVideos, fetchAvatar, fetchUsers, getUserLocation, API_KEY, BASE_URL };

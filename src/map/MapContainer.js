@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Map from "./Map";
+import React, { Suspense, lazy, useEffect, useState } from "react";
+import { getUserLocation } from "../utils/data";
 import AppHeader from "../AppHeader";
 import './Map.css';
+const Map = lazy(() => import('./Map'));
 
 export default function MapContainer() {
   const [position, setPosition] = useState([37.7749, -122.4194]);
@@ -14,26 +15,24 @@ export default function MapContainer() {
       return;
     }
 
+    getUserLocation().then(({ position: pos, error }) => {
+      if (error) {
+        setLocationError(error);
+      } else if (pos) {
+        setPosition(pos);
+      }
+    });
     // Request location services to access user's current location
 
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setPosition([pos.coords.latitude, pos.coords.longitude]);
-      },
-      (err) => {
-        setLocationError("Location permission denied");
-        console.error(err);
-      },
-      { enableHighAccuracy: true }
-    );
   }, []);
 
   return (
     <div className="map-container">
       <h3>Map View</h3>
       {locationError && <p>{locationError}</p>}
-
-      <Map position={position} />
+      <Suspense fallback={<div>Loading map...</div>}>
+        <Map position={position} />
+      </Suspense>
     </div>
   );
 }
