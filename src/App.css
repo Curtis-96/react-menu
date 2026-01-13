@@ -1,9 +1,13 @@
 .App {
-  text-align: center;
-  flex-direction: column;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+.App > main {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
 
 @import "leaflet/dist/leaflet.css";
@@ -22,7 +26,6 @@
 .App-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
   /* background-color: #F08705; */
@@ -65,16 +68,18 @@
 
 /* Sidebar.css */
 .sidebar {
-  background-color: transparent;
-  flex-direction: column;
-  display: inline-flex;
-  width: 200px;
-  float: left;
+  position: fixed;
   left: 0;
-  justify-content: end;
-  align-self: flex-start;
+  top: 80px;
+  height: calc(100vh - 80px);
+  width: 200px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px 0;
+  z-index: 100;
 }
-
 .sidebar-link {
   display: block; /* Make the links full width of the sidebar */
   padding: 10px 0; /* Add some vertical padding to space out the links */
@@ -86,11 +91,8 @@
   background-color: rgba(0,0,0,0.08); /* subtle overlay on hover to keep contrast on bright background */
 }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
