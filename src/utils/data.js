@@ -1,6 +1,3 @@
-import axios from "axios";
-
-const API_KEY = process.env.REACT_APP_API_KEY;
 
     const fetchUsers = async() => {
         try {
@@ -32,7 +29,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
         const normalized = searchTerm.toLowerCase();
 
-        const newList = searchTerm.length > 0 &&
+        const searchResults = searchTerm.length > 0 &&
             list.filter(
                 (elem) =>
                 elem.name.first.toLowerCase().includes(normalized) ||
@@ -40,10 +37,11 @@ const API_KEY = process.env.REACT_APP_API_KEY;
                 elem.email.toLowerCase().includes(normalized)
             );    
 
-        return newList;
+        return searchResults;
     };
 
     const getUserLocation = () => {
+
     return new Promise((resolve) => {
         if (!navigator.geolocation) {
             resolve({
@@ -72,4 +70,4 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 };
 
 
-export { searchUsers, fetchVideos, fetchAvatar, fetchUsers, getUserLocation, API_KEY };
+export { searchUsers, fetchVideos, fetchAvatar, fetchUsers, getUserLocation };
