@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { getUserLocation } from "../utils/data";
-import AppHeader from "../AppHeader";
 import './Map.css';
 const Map = lazy(() => import('./Map'));
 
@@ -12,6 +11,8 @@ export default function MapContainer() {
 
     if (!navigator.geolocation) {
       setLocationError("Geolocation is not supported by your browser");
+      //Display error to user if geolocation is not supported
+      
       return;
     }
 

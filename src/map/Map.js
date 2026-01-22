@@ -18,10 +18,6 @@ L.Icon.Default.mergeOptions({
 export default function Map({ position }) {
   const center = position || [37.7749, -122.4194];
 
-  useEffect(() => {
-    
-  }, []);
-
   return (
     <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
       <MapContainer center={center} zoom={12} style={{ height: '50vh', width: '90%', maxWidth: '900px', margin: '1rem auto' }}>

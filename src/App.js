@@ -1,17 +1,9 @@
-import burger from './burger.svg';
-import { ReactDOM, React, useState, useEffect } from 'react';
-import axios from "axios";
-import Icon from '@mdi/react';
-import { MdFace, mdiAccount } from '@mdi/react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate, withRouter, NavLink, Switch, Outlet } from 'react-router-dom';
-import './App.css';
-import Map from './map/Map';
 import UserDashboard from './users/UserDashboard';
 import Videos from './videos/Videos';
 import AppHeader from './AppHeader';
 import MapContainer from './map/MapContainer';
-
-const API_KEY = process.env.REACT_APP_API_KEY;
+import './App.css';
 
 const App = () => {
 

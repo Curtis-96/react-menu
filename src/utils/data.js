@@ -1,8 +1,6 @@
 import axios from "axios";
-import { ReactDOM, React, useState, useEffect } from 'react';
 
-    const BASE_URL = "https://www.youtube.com/watch?v=";
-    const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
     const fetchUsers = async() => {
         try {
@@ -26,20 +24,7 @@ import { ReactDOM, React, useState, useEffect } from 'react';
         return avatarId;
     };
 
-     const fetchVideos = async() => {
-        const result = await axios.get("https://www.googleapis.com/youtube/v3/search", {
-            params: {
-                part: "snippet",
-                maxResults: 5,
-                key: API_KEY,
-                q: 'music',
-            },
-        });
-        return result;
-    };
-    
     const searchUsers = (searchTerm, list) => {
-        const allUsers = list;
 
         if (!searchTerm || searchTerm.trim() === '') {
             return list;
@@ -87,4 +72,4 @@ import { ReactDOM, React, useState, useEffect } from 'react';
 };
 
 
-export { searchUsers, fetchVideos, fetchAvatar, fetchUsers, getUserLocation, API_KEY, BASE_URL };
+export { searchUsers, fetchVideos, fetchAvatar, fetchUsers, getUserLocation, API_KEY };

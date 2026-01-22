@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchUsers, searchUsers } from '../utils/data';
 import robot from '../robot.svg';
-import { Link } from 'react-router-dom';
 import './UserDashboard.css';
-
-const API_KEY = process.env.REACT_APP_API_KEY;
 
 const UserDashboard = (props) => {
   const [userName, setUserName] = useState('');
